@@ -12,6 +12,11 @@ int main(){
 	printf("\n");	
 
 	// Your code here...
+	int digits2[100]; //maybe?
+	printf("The first non-repeated digit is ");
+	printf("The last non-repeated digit is ");
+	printf("The first repeated digit is ");
+	printf("The last repeated digit is ");
 
 	return 0;
 }
