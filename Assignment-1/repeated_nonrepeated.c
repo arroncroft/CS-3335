@@ -1,24 +1,25 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-int main(){
+int main() {
 	
-	// Change the elements in the following array
-	// to test your program
-	int digits[]={2,0,38,2,3,1,3};
+	int digits[] = {2,0,38,2,3,1,3}; //test some repeated and some not
+	//int digits[] = {3,1,1,5,3,5}; //test all repeated
+	//int digits[] = {1,2,3,4,5,6}; //test none repeated
 	int i;
 	bool found = false;
-
+	
+	//print digits array
 	printf("In the array of: ");	
 	for (i=0; i<sizeof(digits)/sizeof(int); i++)
 		printf("%d ", digits[i]);
 	printf("\n\n");	
 	
-	//first non-repeated digit
+	//first non-repeated digit//
 	for (i=0; i<sizeof(digits)/sizeof(int); i++) {
-		for (int j=i+1; j<sizeof(digits)/sizeof(int); j++) {
+		for (int j=0; j<sizeof(digits)/sizeof(int); j++) {
 			found = false;
-			if (digits[i] == digits[j]) {
+			if (i !=j && digits[i] == digits[j]) {
 				found = true;
 				break;
 			}
@@ -33,31 +34,33 @@ int main(){
 		}
 	printf("\n");
 	
-	//last non-repeated digit
-	for (i=(sizeof(digits)/sizeof(int))-1; i>=0; i--) {
-		for (int j=i-1; j>=0; j--) {
-			found = false;
-			if (digits[i] == digits[j]) {
-				found = true;
+	//last non-repeated digit//
+	if (found == false) {
+		for (i=(sizeof(digits)/sizeof(int))-1; i>=0; i--) {
+			for (int j=(sizeof(digits)/sizeof(int))-1; j>=0; j--) {
+				found = false;
+				if (i != j && digits[i] == digits[j]) {
+					found = true;
+					break;
+				}
+			}
+			if (found == false) {
+				printf("The last non-repeated digit is %d.", digits[i]);
 				break;
 			}
 		}
-		if (found == false) {
-			printf("The last non-repeated digit is %d.", digits[i]);
-			break;
+		if (found == true) {
+			printf("There is no non-repeated digit.");
 		}
+		printf("\n");
 	}
-	if (found == true) {
-		printf("There is no non-repeated digit.");
-	}
-	printf("\n");
 
-	//first repeated digit
+	//first repeated digit//
 	found = false;
 	for (i=0; i<sizeof(digits)/sizeof(int); i++) {
-		for (int j=i+1; j<sizeof(digits)/sizeof(int); j++) {
+		for (int j=0; j<sizeof(digits)/sizeof(int); j++) {
 			found = false;
-			if (digits[i] == digits[j]){
+			if (i != j && digits[i] == digits[j]){
 				found = true;
 				break;
 			}
@@ -72,24 +75,26 @@ int main(){
 	}
 	printf("\n");
 
-	//last repeated digit
-	for (i=(sizeof(digits)/sizeof(int))-1; i>=0; i--) {
-		for (int j=i-1; j>=0; j--) {
-			found = false;
-			if (digits[i] == digits[j]){
-				found = true;
-				break;
+	//last repeated digit//
+	if (found == true) {
+		for (i=(sizeof(digits)/sizeof(int))-1; i>=0; i--) {
+			for (int j=(sizeof(digits)/sizeof(int))-1; j>=0; j--) {
+				found = false;
+				if (i != j && digits[i] == digits[j]){
+					found = true;
+					break;
+				}
 			}
+			if (found == true) {
+				printf("The last repeated digit is %d.", digits[i]);
+			}
+			else {
+				printf("There is no repeated digit.");
+			}
+			break;
 		}
-		if (found == true) {
-			printf("The last repeated digit is %d.", digits[i]);
-		}
-		else {
-			printf("There is no repeated digit.");
-		}
-		break;
+		printf("\n");
 	}
-	printf("\n");
 
 	return 0;
 }
