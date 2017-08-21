@@ -31,7 +31,7 @@ int main() {
 		}
 	}
 	if (found == true) {
-			printf("There is no non-repeated digit.");
+		printf("There is no non-repeated digit.");
 		}
 	printf("\n");
 	
