@@ -7,6 +7,7 @@ int main() {
 	//int digits[] = {3,1,1,5,3,5}; //test all repeated
 	//int digits[] = {1,2,3,4,5,6}; //test none repeated
 	int i;
+	int j;
 	bool found = false;
 	
 	//print digits array
@@ -17,9 +18,9 @@ int main() {
 	
 	//first non-repeated digit//
 	for (i=0; i<sizeof(digits)/sizeof(int); i++) {
-		for (int j=0; j<sizeof(digits)/sizeof(int); j++) {
+		for (j=0; j<sizeof(digits)/sizeof(int); j++) {
 			found = false;
-			if (i !=j && digits[i] == digits[j]) {
+			if (i != j && digits[i] == digits[j]) {
 				found = true;
 				break;
 			}
@@ -37,7 +38,7 @@ int main() {
 	//last non-repeated digit//
 	if (found == false) {
 		for (i=(sizeof(digits)/sizeof(int))-1; i>=0; i--) {
-			for (int j=(sizeof(digits)/sizeof(int))-1; j>=0; j--) {
+			for (j=(sizeof(digits)/sizeof(int))-1; j>=0; j--) {
 				found = false;
 				if (i != j && digits[i] == digits[j]) {
 					found = true;
@@ -58,7 +59,7 @@ int main() {
 	//first repeated digit//
 	found = false;
 	for (i=0; i<sizeof(digits)/sizeof(int); i++) {
-		for (int j=0; j<sizeof(digits)/sizeof(int); j++) {
+		for (j=0; j<sizeof(digits)/sizeof(int); j++) {
 			found = false;
 			if (i != j && digits[i] == digits[j]){
 				found = true;
@@ -78,7 +79,7 @@ int main() {
 	//last repeated digit//
 	if (found == true) {
 		for (i=(sizeof(digits)/sizeof(int))-1; i>=0; i--) {
-			for (int j=(sizeof(digits)/sizeof(int))-1; j>=0; j--) {
+			for (j=(sizeof(digits)/sizeof(int))-1; j>=0; j--) {
 				found = false;
 				if (i != j && digits[i] == digits[j]){
 					found = true;
