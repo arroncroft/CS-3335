@@ -3,11 +3,11 @@
 
 int main(){
 	char s1[]="Shatner";
-	printf("sizeof(s1) = %ld\n", sizeof(s1));
-	printf("strlen(s1) = %ld\n", strlen(s1));
+	printf("sizeof(s1) = %ld\n", sizeof(s1)); //returns size of char array, which is string length plus one for '\0'
+	printf("strlen(s1) = %ld\n", strlen(s1)); //returns actual string length
 
 	char s2[20]="Shatner";
-	printf("sizeof(s2) = %ld\n", sizeof(s2));
+	printf("sizeof(s2) = %ld\n", sizeof(s2)); //takes up 8 of the 20 spots in s2 array
 	printf("strlen(s2) = %ld\n", strlen(s2));
 
 // We will come back and revisit the following part after learning pointers.

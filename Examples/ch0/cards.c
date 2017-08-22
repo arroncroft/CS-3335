@@ -2,11 +2,12 @@
 #include <stdlib.h>
 
 int main(){
-	char card_name[3];
+	char card_name[3]; //'\0' is the end of a char string in C and takes up 3rd space
+			   //The other 2 spots in the array are for 10 needing 2 digits	
 	int count = 0;
 	while (card_name[0]!='X'){
 		puts ("Enter the card_name: ");
-		scanf("%2s", card_name);
+		scanf("%2s", card_name); //will only accept 2 chars, ignores others
 		int val = 0;
 		switch(card_name[0]){
 			case 'K':
@@ -20,7 +21,7 @@ int main(){
 			case 'X':
 				continue;
 			default:
-				val = atoi(card_name);
+				val = atoi(card_name); //converts number chars to ints; "A to I"
 				if ((val<1) || (val>10)){
 					puts("I don't understand that value!");
 					continue;
