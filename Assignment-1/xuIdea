@@ -1,8 +1,0 @@
-create int array with 100 slots (0-99)
-loop through first array and update created array when int is found
-loop through created array and look for 1 (nonrepeated) or 2 (repeated)
-
-Use this idea to make Assignment 1 more efficient
-currently it is O(n^2)
-
-"Don't just be satisfied with what's given" - Xu
