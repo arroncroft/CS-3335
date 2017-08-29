@@ -53,12 +53,10 @@ int main(void){
 		printf("%5s","|");
 	}
 
-	//print x markers and points 
-	//points WIP
+	//print x markers and points
 	printf("\n");
 	for(i=low; i<high; i++){
 		printf("%-2s%2d%*s\n","t=",i,f(i),"*");
-		//printf("%-2s%2d\n","t=",i);
 	}
 
 	return 0;
