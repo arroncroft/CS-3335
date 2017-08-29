@@ -31,32 +31,26 @@ int main(void){
 	printf("max = %d\n",max);
 	printf("*********\n");
 
-	//find y markers using max and min
+	//print y markers and dashes
 	int yMarker = min;
-	for(i=0; yMarker<max; i++){
+	int numDashes = 1;
+	printf("%5d",yMarker);
+	while(yMarker < max){
 		yMarker = yMarker + 5;
-	}
-	int yMarkers[i];
-	yMarker = min;
-	yMarkers[0] = yMarker;
-	for(i=1; yMarker<max; i++){
-		yMarker = yMarker + 5;
-		yMarkers[i] = yMarker;
-	}
-
-	//print y markers
-	for(i=0; i<sizeof(yMarkers)/sizeof(int); i++){
-		printf("%5d",yMarkers[i]);
+		printf("%5d",yMarker);
+		numDashes++;
 	}
 	printf("\n");
-	for(i=0; i<sizeof(yMarkers)/sizeof(int); i++){
+	for(i = 0; i < numDashes; i++){
 		printf("%5s","|");
 	}
 
 	//print x markers and points
 	printf("\n");
-	for(i=low; i<high; i++){
-		printf("%-2s%2d%*s\n","t=",i,f(i),"*");
+	i = low;
+	while (i <=  high){
+		printf("%-2s%2d%*s\n","t=",i,(f(i) - min)+1,"*");
+		i++;
 	}
 
 	return 0;
@@ -64,16 +58,16 @@ int main(void){
 
 
 int f(int t){
-    //example 1
+	//example 1
 	return (t*t-4*t+5);
     
-    //example 2
-    //return (-t*t+4*t-1);
+    	//example 2
+    	//return (-t*t+4*t-1);
     
-    //example 3
-    //return (sin(t)*10);
+	//example 3
+    	//return (sin(t)*10);
     
-    //example 4
+    	//example 4
 	//if (t>0)
 	//	return t*2;
 	//else

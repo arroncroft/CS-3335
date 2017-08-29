@@ -49,8 +49,21 @@ unsigned getbits(unsigned x, int p, int n){
 	// return (x >> (p+1-n)) & ~(~0<<n);
 }
 
+// setbits() returns x with the n bits that begin at position p, set to the rightmost n
+// bits of y
+unsigned setbits(unsigned x, int p, int n, unsigned y){
+
+}
+
+// invertbits() returns x with the n bits that begin at position p (right-adjusted)
+// inverted
+unsigned invertbits(unsigned x, int p, int n) {
+
+}
+
 int main(){
-	int x = 19;
+	int x = 2004384122;
+	int y = 1634952294;
 
 	printf("The binary rep. of %d is:\n", x);
 	bit_print(x);
@@ -69,6 +82,15 @@ int main(){
 
 	unsigned result = getbits(p, 20, 7);
 	printf("\ncalling getbits(p, 20, 7) to extract 7 bits from bit # 20 returns %d:\n", result);
+	bit_print(result);
+	
+	//testing setbits() and invertbits()
+	result = setbits(x, 20, 4, y);
+	printf("\ncalling setbits(x, 20, 4, y) returns %d:\n:",result);
+	bit_print(result);
+
+	result = invertbits(x, 19, 9);
+	printf("\ncalling invertbits(x, 19, 9) returns %d:\n",result);	
 	bit_print(result);
 
 	return 0;
