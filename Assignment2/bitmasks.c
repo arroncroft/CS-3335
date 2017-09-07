@@ -28,9 +28,9 @@ int pack(char a, char b, char c, char d){
 	return p;
 }
 
-char unpack(int p, int k){    // k=0, 1, 2, or 3
-	int n = k * CHAR_BIT; // n = 0, 8, 16, 24
-	unsigned mask = 255;  // mask = low-order byte
+char unpack(int p, int k){  // k=0, 1, 2, or 3
+	int n = k * CHAR_BIT; 	// n = 0, 8, 16, 24
+	unsigned mask = 255;  	// mask = low-order byte
 	
 	mask <<= n;
 	return ((p & mask) >> n);	
@@ -49,16 +49,19 @@ unsigned getbits(unsigned x, int p, int n){
 	// return (x >> (p+1-n)) & ~(~0<<n);
 }
 
-// setbits() returns x with the n bits that begin at position p, set to the rightmost n
-// bits of y
+// setbits() returns x with the n bits that begin at position p, set to the rightmost 
+// n bits of y
 unsigned setbits(unsigned x, int p, int n, unsigned y){
-
+	int shift = p-n+1;
+    unsigned mask = (1 << n) - 1;
+    return (x & ~(mask << shift)) | ((y & mask) << shift);
 }
 
 // invertbits() returns x with the n bits that begin at position p (right-adjusted)
 // inverted
 unsigned invertbits(unsigned x, int p, int n) {
-
+	int shift = p-n+1;
+	return (x ^ (~(~0 << n) << (shift)));
 }
 
 int main(){
