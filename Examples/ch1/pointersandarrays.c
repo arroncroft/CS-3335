@@ -1,17 +1,19 @@
 #include <stdio.h>
 
 int main(){
-	int a[3]={-1, 2, 0}, b[]={20, 1};
+	int a[3]={-1, 2, 0};
+	int b[]={20, 1};
 	
 	a[1] = 23;
+	//a[1] = 25;
 
 	int i;
 	for (i=0; i<sizeof(a)/sizeof(*a); i++)
-		printf("a[%d] = %d ", i, a[i]);
+		printf("a[%d] = %d\n", i, a[i]);
 
-	printf("\n");
+	//printf("\n");
 
-	int *c =a;
+	int *c = a;
 
 	// This is problematic because sizeof(c) is
 	// not the number of bytes in a, rather, it is the 
@@ -22,7 +24,7 @@ int main(){
 
 	printf("\n");
 
-	c=b;
+	c = b;
 	*(c+1) = -9;
 	for (i=0; i<sizeof(b)/sizeof(*b); i++)
 		printf("b[%d] = %d ", i, *(c+i));
