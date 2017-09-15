@@ -17,26 +17,42 @@ char		   // output - data being popped out from the stack
 void push(char stack[],
 	  char item,
 	  int *top,
-	  int max_size){
+	  int max_size) {
 
 	// Your code here ...
 	// Push item to the top of stack if it's not full. 
 	// Update the top pointer s/t it points to the index of the new top element on the stack.
+	
+	//my code begins
+	if (*top = max_size - 1) {
+		printf("%s\n", "Stack is full.");
+	}
+	else {
+		stack[*top] = item;
+		*top = *top + 1;
+	}
+	//my code ends
 }
 
 char pop(char stack[],
-	 int *top){
+	 int *top) {
 
 	// Your code here ...
 	// Pop out the top item on the stack and return it if the stack is not emtpy.
 	// Update the top pointer s/t it points to the index of the new top element on the stack. 
 	// 
-	// Return STACK_EMPTY if the stack is empty. 	
+	// Return STACK_EMPTY if the stack is empty. 
+	
+	//my code begins
+	if (*top != STACK_EMPTY) {
+		return *top;
+	}
+	//my code ends
 
 	return STACK_EMPTY;
 }
 
-int main(){
+int main() {
 	char s[STACK_SIZE];
 	int s_top = STACK_EMPTY; // The ***index*** of the top of the stack
 
@@ -48,11 +64,20 @@ int main(){
    	// with it, man it.
 	// Print each char before each pushing.
 
+	//my code begins
+	for(int i = 0; i < s[STACK_SIZE]; i++) {
+
+	}
+	//my code ends
+
 	printf("-----------\n");
 
 	// Your code here ...
 	// (Using a loop) Keep popping out chars from the stack until it is empty
 	// Print each char after each popping. 
+
+	//my code begins
+	//my code ends
 
 	return 0;
 }
