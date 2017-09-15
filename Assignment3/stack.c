@@ -22,22 +22,11 @@ void push(char stack[],
 	// Your code here ...
 	// Push item to the top of stack if it's not full. 
 	// Update the top pointer s/t it points to the index of the new top element on the stack.
-<<<<<<< HEAD
-	
-	//my code begins
-	if (*top = max_size - 1) {
-		printf("%s\n", "Stack is full.");
-	}
-	else {
-		stack[*top] = item;
-		*top = *top + 1;
-=======
 
 	//my code
 	if (*top < STACK_SIZE - 1) { //if stack is not full
 		stack[*top + 1] = item; // push to top of stack
 		*top = *top + 1; //set pointer to top of stack
->>>>>>> 073a7b094da6b10d603b8d37cb986f4bd68eaaa4
 	}
 	//my code ends
 }
@@ -82,11 +71,6 @@ int main() {
 	// with it, man it.
 	// Print each char before each pushing.
 
-<<<<<<< HEAD
-	//my code begins
-	for(int i = 0; i < s[STACK_SIZE]; i++) {
-
-=======
 	//my code
 	srand ( time(0) );	
 	char random = rand() % 93 + 33;
@@ -94,7 +78,6 @@ int main() {
 		random = rand() % 93 + 33;
 		printf("%c\n", random);
 		push(s, random, &s_top, STACK_SIZE);
->>>>>>> 073a7b094da6b10d603b8d37cb986f4bd68eaaa4
 	}
 	//my code ends
 
@@ -104,14 +87,10 @@ int main() {
 	// (Using a loop) Keep popping out chars from the stack until it is empty
 	// Print each char after each popping. 
 
-<<<<<<< HEAD
-	//my code begins
-=======
 	//my code
 	for (i = 0; i < STACK_SIZE; i++) {
 		printf("%c\n", pop(s, &s_top));
 	}
->>>>>>> 073a7b094da6b10d603b8d37cb986f4bd68eaaa4
 	//my code ends
 
 	return 0;
