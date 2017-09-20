@@ -92,9 +92,17 @@ int main(int argc, char *argv[])
 void *mymemmove(void *to, const void *src, size_t n){
   //return memmove(to, src, n);
   // Replace the return statement above with your implementation of the function...
-  
+  	  
   //my code...
+  char temp[n];
+  int i;
+  char *t = to;
+  const char *s = src;
 
+  for(i=0; i<n; i++)
+    temp[i] = s[i];
+  for(i=0; i<n; i++)
+    t[i] = temp[i];
   //my code ends
 }
 
