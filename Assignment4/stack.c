@@ -75,7 +75,7 @@ int main()
 	//my code begins
 	double random;
 	int i;
-	for (i = 0; i < STACK_SIZE; i++) {
+	while (myerror == NORMAL) {
 		random = rand() % 93 + 33;
 		printf("%.2f\n", random);
 		push(s, random, &s_top, STACK_SIZE);
@@ -87,7 +87,7 @@ int main()
 	// Print each double after each popping.
 
 	//my code
-	for (i = 0; i < STACK_SIZE; i++) {
+	while (myerror == NORMAL) {
 		printf("%.2f\n", pop(s, &s_top));
 	}
 	//my code ends
