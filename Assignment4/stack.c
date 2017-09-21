@@ -3,82 +3,94 @@
 #include <string.h>
 #include <math.h>
 
-#define STACK_SIZE 	10
+#define STACK_SIZE 10
 
-#define STACK_FULL      -2
-#define STACK_EMPTY 	-1
-#define NORMAL          0
+#define STACK_FULL -2
+#define STACK_EMPTY -1
+#define NORMAL 0
 
 int myerror = NORMAL;
 
-void push(double [],	// input/ouput - the stack
-	  double,	// input - data being pushed onto the stack
-	  double **,	// input/output - pointer to pointer to the top of stack
-	  int);		// constant - maximum capacity of stack
+void push(double[],  // input/ouput - the stack
+	  double,    // input - data being pushed onto the stack
+	  double **, // input/output - pointer to pointer to the top of stack
+	  int);      // constant - maximum capacity of stack
 
-double			// output - data being popped out from the stack
-     pop(double [],	// input/output - the stack
-	 double **);	// input/output - pointer to pointer to top of stack
-	 
+double pop(double[],   // output - data being popped out from the stack
+	   double **); // input/output - the stack
+		       // input/output - pointer to pointer to top of stack
+
 void push(double stack[],
-	double item,
-	double **top,
-	int max_size){
+	  double item,
+	  double **top,
+	  int max_size)
+{
 
 	// Your code here...
-	if (*top < STACK_SIZE - 1) { //if stack is not full
-		stack[*top + 1] = item; // push to top of stack
-		*top = *top + 1; //set pointer to top of stack
+	if (*(int *)top < max_size - 1) //check to see if stack is full
+	{
+		myerror = NORMAL;
+		(*top)++;
+		stack[*(int *)top] = item;
 	}
+	// my code ends
 }
 
 double pop(double stack[],
-	double **top){
+	   double **top)
+{
 
 	// Your code here...
-	if (*top != STACK_EMPTY) {
-		return *top;
-	}
-
-	if (*top > STACK_EMPTY) {
-		char popped = stack[*top];
-		stack[*top] = ' ';
-		*top = *top - 1;
+	double popped;
+	if (*(int *)top > STACK_EMPTY) {
+		myerror = NORMAL;
+		popped = **top;
+		**top = ' ';
+		*top--;
 		return popped;
 	}
+	else {
+		myerror = STACK_EMPTY;
+		return 0.0;
+	}
+	// my code ends
 
 	return 0.0;
 }
 
-int main(){
-        double s[STACK_SIZE];
-        double *s_top = NULL;
+int main()
+{
+	double s[STACK_SIZE];
+	double *s_top = NULL;
+	srand(time(NULL));
 
-        srand(time(NULL));
-
-        // Keep pushing doubles equivalent to chars randomly picked between '!'(33) and '~'(126) 
+	// Keep pushing doubles equivalent to chars randomly picked between '!'(33) and '~'(126)
 	// to the stack until it is full.
 	// Print each double before each pushing.
-	
-	srand ( time(0) );	
-	char random = rand() % 93 + 33;
+
+	//my code begins
+	double random;
+	int i;
 	for (i = 0; i < STACK_SIZE; i++) {
 		random = rand() % 93 + 33;
-		printf("%c\n", random);
+		printf("%.2f\n", random);
 		push(s, random, &s_top, STACK_SIZE);
 	}
-
 	printf("-----------\n");
+	//my code ends
 
-        // Keep popping out doubles from the stack until it is empty
-        // Print each double after each popping.
+	// Keep popping out doubles from the stack until it is empty
+	// Print each double after each popping.
+
+	//my code
 	for (i = 0; i < STACK_SIZE; i++) {
-		printf("%c\n", pop(s, &s_top));
+		printf("%.2f\n", pop(s, &s_top));
 	}
-	
+	//my code ends
+
 	// Repeat above until the user says 'no'.
 
 	// Your code here...
-	
-        return 0;
+
+	return 0;
 }
