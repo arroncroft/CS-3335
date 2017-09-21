@@ -87,9 +87,9 @@ int main()
 	// Print each double after each popping.
 
 	//my code
-	while (myerror == NORMAL) {
+	do {
 		printf("%.2f\n", pop(s, &s_top));
-	}
+	} while (myerror == NORMAL);
 	//my code ends
 
 	return 0;
