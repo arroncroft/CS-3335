@@ -33,6 +33,10 @@ void push(double stack[],
 		(*top)++;
 		stack[*(int *)top] = item;
 	}
+	else {
+		myerror = STACK_FULL;
+		printf("Stack is full!\n");
+	}
 	// my code ends
 }
 
@@ -49,10 +53,7 @@ double pop(double stack[],
 		*top--;
 		return popped;
 	}
-	else {
-		myerror = STACK_EMPTY;
-		return 0.0;
-	}
+	myerror = STACK_EMPTY;
 	// my code ends
 
 	return 0.0;
