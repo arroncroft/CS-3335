@@ -27,11 +27,11 @@ void push(double stack[],
 {
 
 	// Your code here...
-	if (*(int *)top < max_size - 1) //check to see if stack is full
+	if (*(int *)top < max_size) //check to see if stack is full
 	{
 		myerror = NORMAL;
-		(*top)++;
 		stack[*(int *)top] = item;
+ 		(*(int *)top)++;
 	}
 	else {
 		myerror = STACK_FULL;
@@ -46,14 +46,17 @@ double pop(double stack[],
 
 	// Your code here...
 	double popped;
-	if (*(int *)top > STACK_EMPTY) {
+	if (*(int *)top > 0) {
 		myerror = NORMAL;
-		popped = **top;
-		**top = ' ';
-		*top--;
+		(*(int *)top)--;
+		popped = stack[*(int *)top];
+		stack[*(int *)top] = (int)NULL;
 		return popped;
 	}
-	myerror = STACK_EMPTY;
+	else {
+		myerror = STACK_EMPTY;
+		return 0.0;
+	}
 	// my code ends
 
 	return 0.0;
@@ -88,10 +91,6 @@ int main()
 		printf("%.2f\n", pop(s, &s_top));
 	}
 	//my code ends
-
-	// Repeat above until the user says 'no'.
-
-	// Your code here...
 
 	return 0;
 }
