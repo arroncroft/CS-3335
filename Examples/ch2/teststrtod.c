@@ -4,9 +4,10 @@
 
 int main(void){
 	char s[]="10.002";
+	//char s[] = "test";
 	
 	char *endptr;
-	double temp = strtod(s,&endptr);
+	double temp = strtod(s, &endptr);
     	if (s != endptr && *endptr == '\0')
 		printf("%lf\n", temp);
 	else

@@ -15,5 +15,6 @@ int main(void){
 		printf("Token: %s\n", c);
 		c = strtok(NULL, delim);
 	}
+	
 	return 0;
 }

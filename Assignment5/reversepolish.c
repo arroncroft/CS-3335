@@ -11,7 +11,8 @@
 #define NORMAL 0
 
 int myerror = NORMAL;
-char input[100];
+char infix[100];
+char postfix[100];
 char tokens[100];
 double answer;
 
@@ -69,13 +70,19 @@ int main()
     printf("6 working operators: +, -, *, /, sin, and log\n");
     printf("Please input your problems to calculate\n");
     printf("*********************************************\n");
-    fgets(input, sizeof(input), stdin);
-    input[strlen(input) - 1] = '\0';
-    //test
-    char delim[]=" ";
-    tokens[0] = strtok(input, delim);
-    //test end
-    printf("%s\t\t%s\n", "Input:", input);
+    fgets(infix, sizeof(infix), stdin);
+    infix[strlen(infix) - 1] = '\0';
+    printf("%s\t\t%s\n", "Infix:", infix);
+    //next: convert to tokens and add to tokens array
+    char *c;
+    c = strtok(infix," ");
+    while (c != NULL){
+    	printf("%s %s\n","Token:",c);
+    	c = strtok(NULL," ");
+    }
+    //next: arrange in postfix and add to postfix array
+    //next: solve problem in postfix array and set as answer
+    printf("%s\t\t%s\n", "Postfix:", postfix);
     printf("%s\t\t%f\n", "Answer:", answer);
     printf("*********************************************\n");
 }
