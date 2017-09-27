@@ -65,6 +65,10 @@ int main()
 {
     double s[STACK_SIZE];
     double *s_top = NULL;
+    char *c;
+    char *endptr;
+    double temp;
+    int i;
 
     printf("**************** Calculator *****************\n");
     printf("6 working operators: +, -, *, /, sin, and log\n");
@@ -73,29 +77,23 @@ int main()
     fgets(infix, sizeof(infix), stdin);
     infix[strlen(infix) - 1] = '\0';
     printf("%s\t\t%s\n", "Infix:", infix);
-    //next: convert to tokens and add to tokens array
-    char *c;
+    //next: convert to tokens
+    //next: arrange in postfix and add to postfix array
+    printf("%s\t", "Postfix:");
     c = strtok(infix, " ");
     while (c != NULL)
     {
-        //printf("%s %s\n","Token:",c);
-        //test
-        char *endptr;
-        double temp = strtod(c, &endptr);
+        temp = strtod(c, &endptr);
         if (c != endptr && *endptr == '\0')
             printf("%lg ", temp);
         else if (c == endptr)
         {
-            if (endptr == "-")
-                printf("minus");
+            printf("%s ", endptr);
         }
-        //test end
         c = strtok(NULL, " ");
     }
     printf("\n");
-    //next: arrange in postfix and add to postfix array
     //next: solve problem in postfix array and set as answer
-    printf("%s\t\t%s\n", "Postfix:", postfix);
-    printf("%s\t\t%f\n", "Answer:", answer);
+    printf("%s\t\t%g\n", "Answer:", answer);
     printf("*********************************************\n");
 }
