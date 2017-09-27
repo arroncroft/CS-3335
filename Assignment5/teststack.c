@@ -31,7 +31,7 @@ void push(double stack[],
         if (*top == NULL)
             *top = stack;
         else
-            ++(*top);
+            (*top)++;
         **top = item;
         myerror = NORMAL;
     }
@@ -50,7 +50,7 @@ double pop(double stack[],
         if (*top == stack)
             *top = NULL;
         else
-            --(*top);
+            (*top)--;
         myerror = NORMAL;
     }
     else

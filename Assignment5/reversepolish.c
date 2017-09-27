@@ -75,11 +75,24 @@ int main()
     printf("%s\t\t%s\n", "Infix:", infix);
     //next: convert to tokens and add to tokens array
     char *c;
-    c = strtok(infix," ");
-    while (c != NULL){
-    	printf("%s %s\n","Token:",c);
-    	c = strtok(NULL," ");
+    c = strtok(infix, " ");
+    while (c != NULL)
+    {
+        //printf("%s %s\n","Token:",c);
+        //test
+        char *endptr;
+        double temp = strtod(c, &endptr);
+        if (c != endptr && *endptr == '\0')
+            printf("%lg ", temp);
+        else if (c == endptr)
+        {
+            if (endptr == "-")
+                printf("minus");
+        }
+        //test end
+        c = strtok(NULL, " ");
     }
+    printf("\n");
     //next: arrange in postfix and add to postfix array
     //next: solve problem in postfix array and set as answer
     printf("%s\t\t%s\n", "Postfix:", postfix);
