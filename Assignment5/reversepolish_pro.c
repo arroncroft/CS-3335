@@ -177,12 +177,17 @@ int main()
 			}
 			c = strtok(NULL, " ");
 		}
+		//pop the answer off
 		answer = pop(s, &s_top);
 		pop(s, &s_top);
 		if (myerror != STACK_EMPTY){
 			error = true;
 			printf("ERROR: TOO MANY OPERANDS\n");
+			//clear the stack for next iteration
+			while (myerror != STACK_EMPTY)
+				pop(s, &s_top);
 		}
+		//if no errors, print the answer
 		if (error == false)
 			printf("%s\t\t%g\n", "ANSWER:", answer);
 		printf("*********************************************\n");
