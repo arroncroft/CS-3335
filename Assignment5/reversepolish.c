@@ -1,6 +1,6 @@
 //reversepolish.c
-//6 working operators:
-//+, -, *, /, sin, log
+//8 working operators:
+//+, -, *, /, log, sin, cos, tan
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,6 +26,7 @@ double pop(double[],   // output - data being popped out from the stack
                        // input/output - pointer to pointer to top of stack
                       
 double degreesToRadians(double degrees);
+void printHeader();
 
 void push(double stack[], double item,
           double **top, int max_size)
@@ -67,6 +68,15 @@ double degreesToRadians(double degrees) {
 	return (degrees * M_PI / 180);
 }
 
+void printHeader(){
+	printf("******************** CALCULATOR *********************\n");
+	printf("- 6 working operators: +, -, *, /, log, sin, cos, tan\n");
+	printf("- Input your problems in postfix notation with\n");
+	printf("  one space between each symbol, i.e. 1 2 + 3 -\n");
+	printf("- Please input your problems to calculate\n");
+	printf("*************************************************\n");
+}
+
 int main()
 {
     double s[STACK_SIZE];
@@ -77,10 +87,7 @@ int main()
     int i;
     int loop;
 
-    printf("**************** Calculator *****************\n");
-    printf("6 working operators: +, -, *, /, sin, and log\n");
-    printf("Please input your problems to calculate\n");
-    printf("*********************************************\n");
+	printHeader();
     while (1) {
 	    fgets(input, sizeof(input), stdin);
 	    input[strlen(input) - 1] = '\0';
@@ -122,7 +129,17 @@ int main()
 	           		double angle = pop(s, &s_top);
 	           		answer = sin(degreesToRadians(angle));
 	           		push(s, answer, &s_top, STACK_SIZE);
-	       		}
+				}
+				else if (strcmp(endptr,"cos") == 0) {
+					double angle = pop(s, &s_top);
+					answer = cos(degreesToRadians(angle));
+					push(s, answer, &s_top, STACK_SIZE);
+				}
+				else if (strcmp(endptr,"tan") == 0) {
+					double angle = pop(s, &s_top);
+					answer = tan(degreesToRadians(angle));
+					push(s, answer, &s_top, STACK_SIZE);
+				}   
 	        }
 	        c = strtok(NULL, " ");
 	    }
