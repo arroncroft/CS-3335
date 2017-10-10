@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 	char ch;
 	char *d = "";
 	char *f = "";
-	int count = 0;
+	char output[100] = "";
 
 	while ((ch = getopt(argc, argv, "d:f:")) != EOF)
 	{
@@ -34,10 +34,33 @@ int main(int argc, char *argv[])
 	argc -= optind;
 	argv += optind;
 
-	if(d[0])
-		printf("testing\n");
-	if(f[0])
-		printf("testing 2\n");
+	//create a string to output to the command line
+	strcpy(output,"cut ");
+	if(d[0]) {
+		strcat(output,"-d");
+		strcat(output,d);
+		strcat(output," ");
+	}
+	if(f[0]) {
+		strcat(output,"-f");
+		strcat(output,f);
+		strcat(output," ");
+	}
+	if(argv[0]) {
+		strcat(output,*argv);
+	}
+
+	//test loop 
+	/*
+	int i;
+	for(i=0;i<sizeof(output)/sizeof(char);i++){
+		printf("%c",output[i]);
+	}
+	printf("\n");
+	*/
+
+	//output string to command line
+	system(output);
 
 	return 0;
 }
