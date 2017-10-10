@@ -1,0 +1,18 @@
+example: > myuniq -d -c sortedtitles.txt
+example: > myuniq ... | mysort ... | myuniq -d -c
+
+use order_pizza for reference
+
+Section 1
+--------- 
+while (getopt ...){
+	...      	
+}
+argc -= optind;
+arcv += optind;
+
+Section 2
+---------
+      /---> | if = fopen(...);
+argc <
+      \---> 0 if = stdin;
