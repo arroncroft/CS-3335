@@ -21,6 +21,30 @@ int main(int argc, char *argv[]){
 	// If they are different, output the prev according the options (-c, -d, or -u)
 	// Keey doing this until hitting the end of the input. 
 	// ... ...
+	
+	char ch;
+	int c = 0;
+	int d = 0;
+	int u = 0;
+
+	while ((ch = getopt(argc, argv, "cdu")) != EOF)
+	{
+		switch (ch)
+		{
+		case 'c':
+			c = 1;
+			break;
+		case 'd':
+			d = 1;
+			break;
+		case 'u':
+			u = 1;
+			break;
+		default:
+			fprintf(stderr, "unknown option: '%s'\n", optarg);
+			return 1;
+		}
+	}
 
 	return 0;
 }
