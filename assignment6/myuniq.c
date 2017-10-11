@@ -27,7 +27,6 @@ int main(int argc, char *argv[])
 	int c = 0;
 	int d = 0;
 	int u = 0;
-	int i;
 	char prev[300];
 	char current[300];
 	int count = 1;
@@ -41,16 +40,14 @@ int main(int argc, char *argv[])
 			c = 1;
 			break;
 		case 'd': //only show repeated lines
-			if (u != 1)
-				d = 1;
-			else
+			if (u == 1) 
 				fprintf(stderr, "invalid option: -d -u can not co-exist for uniq\n");
+			d = 1;
 			break;
 		case 'u': //only show non-repeated lines
-			if (d != 1)
-				u = 1;
-			else
-				fprintf(stderr, "invalid option: -d -u can not co-exist for uniq\n");
+			if (d == 1) 
+				fprintf(stderr, "invalid option: -d -u can not co-exist for uniq\n");			
+			u = 1;
 			break;
 		default:
 			fprintf(stderr, "unknown option: '%s'\n", optarg);
@@ -70,7 +67,7 @@ int main(int argc, char *argv[])
 		data = fopen(argv[0], "r");
 		break;
 	default:
-		printf("myuniq [-c | -du] [input [output]]\n");
+		exit(1);
 	}
 
 	fgets(prev, 200, data);
@@ -80,17 +77,39 @@ int main(int argc, char *argv[])
 			count++;
 		else
 		{
-			if (c)
+			if (c && !d && !u)
+			{
 				printf("%d ", count);
-			if (d)
+				printf("%s", prev);
+			}
+			if (d && !c && !u)
 			{
 				if (count > 1)
 					printf("%s", prev);
-				else
-					printf("\n");
 			}
-			if (u)
-				printf("\n");
+			if (c && d && !u)
+			{
+				if (count > 1)
+				{
+					printf("%d ", count);
+					printf("%s", prev);
+				}
+			}
+			if (c && u && !d)
+			{
+				if (count == 1)
+				{
+					printf("%d ", count);
+					printf("%s", prev);
+				}
+			}
+			if (u && !d && !c)
+				if (count == 1)
+				{
+					printf("%s", prev);
+				}
+			if (!c && !d && !u)
+				printf("%s", prev);
 			count = 1;
 			strcpy(prev, current);
 		}
@@ -98,20 +117,40 @@ int main(int argc, char *argv[])
 
 	if (count != 0)
 	{
-		if (c)
+		if (c && !d && !u)
+		{
 			printf("%d ", count);
-		if (d)
+			printf("%s", prev);
+		}
+		if (d && !c && !u)
 		{
 			if (count > 1)
 				printf("%s", prev);
 		}
-		if (u)
+		if (c && d && !u)
+		{
+			if (count > 1)
+			{
+				printf("%d ", count);
+				printf("%s", prev);
+			}
+		}
+		if (c && u && !d)
+		{
+			if (count == 1)
+			{
+				printf("%d ", count);
+				printf("%s", prev);
+			}
+		}
+		if (u && !d && !c)
 		{
 			if (count == 1)
 				printf("%s", prev);
 		}
+		if (!c && !d && !u)
+			printf("%s", prev);
 	}
-	printf("\n");
 
 	return 0;
 }
