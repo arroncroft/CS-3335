@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <getopt.h>
+#include <time.h>
 #include "displayBoard.h"
 #include "generateOrganisms.h"
 
@@ -44,11 +46,16 @@ int main(int argc, char *argv[])
     
     //populate arrays with spaces
     int i, j;
+    srand(time(NULL));
     for (i = 0; i < boardHeight; i++)
     {
         for (j = 0; j < boardWidth; j++)
         {
-            board[i][j] = ' ';
+            int r = (rand() % 100) + 1;
+            if (r <= percentOrgs)
+                board[i][j] = 'X';
+            else
+                board[i][j] = ' ';
         }
     }
 

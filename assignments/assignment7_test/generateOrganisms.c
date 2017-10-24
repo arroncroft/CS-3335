@@ -24,23 +24,49 @@ void generateOrganisms(int percentOrgs, int a, int b, char board[][b])
         {
             //count neighbors
             neighbors = 0;
-            if (board[i][j - 1] == 'X')
-                neighbors++;
-            if (board[i + 1][j - 1] == 'X')
-                neighbors++;
-            if (board[i - 1][j - 1] == 'X')
-                neighbors++;
-            if (board[i][j + 1] == 'X')
-                neighbors++;
-            if (board[i + 1][j + 1] == 'X')
-                neighbors++;
-            if (board[i - 1][j + 1] == 'X')
-                neighbors++;
-            if (board[i + 1][j] == 'X')
-                neighbors++;
-            if (board[i - 1][j] == 'X')
-                neighbors++;
-
+            if ((i != 0) && (i != a-1) && (j != 0) && (j != b-1))
+            {
+	            if (board[i][j - 1] == 'X') //left
+	                neighbors++;
+	            if (board[i - 1][j - 1] == 'X') //down right
+	                neighbors++;
+	            if (board[i + 1][j - 1] == 'X') //down left
+	                neighbors++;
+	            if (board[i][j + 1] == 'X')
+	                neighbors++;
+	            if (board[i + 1][j + 1] == 'X')
+	                neighbors++;
+	            if (board[i - 1][j + 1] == 'X')
+	                neighbors++;
+	            if (board[i + 1][j] == 'X')
+	                neighbors++;
+	            if (board[i - 1][j] == 'X')
+	                neighbors++;
+            }
+            if (i == 0 && j != 0 && j != b-1) //top row
+            {
+            	if(board[a-1][j] == 'X')
+            		neighbors++;
+            	if(board[a-1][j+1] == 'X')
+            		neighbors++;
+            	if(board[a-1][j-1] == 'X')
+            		neighbors++;
+            }
+            if (i == a-1) //bottom row
+            {
+            	
+            }
+            if (j == 0) //left column
+            {
+            	
+            }
+            if (j == b-1) //right column
+            {
+            	
+            }
+            if(board[i][j] == ' ')
+				board[i][j] = neighbors + '0'; //test line
+			/*
             //death
             if (board[i][j] == 'X')
             {
@@ -54,6 +80,7 @@ void generateOrganisms(int percentOrgs, int a, int b, char board[][b])
                 if (neighbors == 3 && r <= percentOrgs)
                     board[i][j] = 'X';
             }
+            */
         }
     }
 }

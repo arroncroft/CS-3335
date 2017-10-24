@@ -23,11 +23,37 @@ void generateOrganisms(int percentOrgs, int a, int b, char board[][b])
         for (j = 0; j < b; j++)
         {
             //count neighbors
+            neighbors = 0;
+            if (board[i][j - 1] == 'X')
+                neighbors++;
+            if (board[i + 1][j - 1] == 'X')
+                neighbors++;
+            if (board[i - 1][j - 1] == 'X')
+                neighbors++;
+            if (board[i][j + 1] == 'X')
+                neighbors++;
+            if (board[i + 1][j + 1] == 'X')
+                neighbors++;
+            if (board[i - 1][j + 1] == 'X')
+                neighbors++;
+            if (board[i + 1][j] == 'X')
+                neighbors++;
+            if (board[i - 1][j] == 'X')
+                neighbors++;
+
             //death
+            if (board[i][j] == 'X')
+            {
+                if (neighbors != 2 && neighbors != 3)
+                    board[i][j] == ' ';
+            }
             //birth
-            int r = (rand() % 100) + 1;
-            if (r <= percentOrgs)
-                board[i][j] = 'X';
+            else if (board[i][j] == ' ')
+            {   
+                int r = (rand() % 100) + 1;
+                if (neighbors == 3 && r <= percentOrgs)
+                    board[i][j] = 'X';
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ float add_with_tax(float f){
 	count = count + 1;
 	return total;
 }
-  
+
 int main(){
 	float val;
 	printf("Price of item: ");
