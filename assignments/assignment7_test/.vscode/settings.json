@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "generateorganisms.h": "c",
+        "unistd.h": "c",
+        "time.h": "c",
+        "stdlib.h": "c",
+        "displayboard.h": "c"
+    }
+}
