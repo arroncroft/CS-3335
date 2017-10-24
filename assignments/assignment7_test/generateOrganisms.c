@@ -26,35 +26,50 @@ void generateOrganisms(int percentOrgs, int a, int b, char board[][b])
             neighbors = 0;
             if ((i != 0) && (i != a-1) && (j != 0) && (j != b-1))
             {
+            	if (board[i + 1][j] == 'X') //up
+	                neighbors++;
+	            if (board[i - 1][j] == 'X') //down
+	                neighbors++;
 	            if (board[i][j - 1] == 'X') //left
 	                neighbors++;
-	            if (board[i - 1][j - 1] == 'X') //down right
+	            if (board[i + 1][j - 1] == 'X') //up left
 	                neighbors++;
-	            if (board[i + 1][j - 1] == 'X') //down left
+	            if (board[i - 1][j - 1] == 'X') //down left
 	                neighbors++;
-	            if (board[i][j + 1] == 'X')
+	            if (board[i][j + 1] == 'X') //right
 	                neighbors++;
-	            if (board[i + 1][j + 1] == 'X')
+	            if (board[i + 1][j + 1] == 'X') //up right
 	                neighbors++;
-	            if (board[i - 1][j + 1] == 'X')
-	                neighbors++;
-	            if (board[i + 1][j] == 'X')
-	                neighbors++;
-	            if (board[i - 1][j] == 'X')
+	            if (board[i - 1][j + 1] == 'X') //down right
 	                neighbors++;
             }
             if (i == 0 && j != 0 && j != b-1) //top row
             {
-            	if(board[a-1][j] == 'X')
+            	if(board[a-1][j] == 'X') //up
             		neighbors++;
-            	if(board[a-1][j+1] == 'X')
+            	if (board[i - 1][j] == 'X') //down
+	                neighbors++;
+	            if (board[i][j - 1] == 'X') //left
+	                neighbors++;
+	            if(board[a-1][j-1] == 'X') //up left
             		neighbors++;
-            	if(board[a-1][j-1] == 'X')
+           		if (board[i - 1][j - 1] == 'X') //down left
+	                neighbors++;
+	            if (board[i][j + 1] == 'X') //right
+	                neighbors++;
+            	if(board[a-1][j+1] == 'X') //up right
             		neighbors++;
+            	if (board[i - 1][j + 1] == 'X') //down right
+	                neighbors++;
             }
-            if (i == a-1) //bottom row
+            if (i == a-1 && j != 0 && j != b-1) //bottom row
             {
-            	
+            	if(board[0][j] == 'X') //down
+            		neighbors++;
+            	if(board[0][j-1] == 'X') //down left
+            		neighbors++;
+            	if(board[0][j+1] == 'X') //down right
+            		neighbors++;
             }
             if (j == 0) //left column
             {
