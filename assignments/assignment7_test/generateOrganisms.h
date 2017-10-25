@@ -1,1 +1,0 @@
-void generateOrganisms(int percentOrgs, int a, int b, char board[][b]);
