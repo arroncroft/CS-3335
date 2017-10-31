@@ -1,1 +1,1 @@
-double mean(double input[]);
+double mean(double input[], int size);

@@ -16,3 +16,6 @@ decrypt.o: decrypt.c decrypt.h encrypt.h
 
 encrypt.o: encrypt.c encrypt.h
 	$(CC) $(CFLAGS) -c encrypt.c -o encrypt.o
+
+clean:
+	-rm $(OBJS)

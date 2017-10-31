@@ -1,0 +1,1 @@
+void printTable(double input[], int size, double mean);

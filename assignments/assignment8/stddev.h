@@ -1,1 +1,1 @@
-double stddev(double input[]);
+double stddev(double input[], int size, double mean);
