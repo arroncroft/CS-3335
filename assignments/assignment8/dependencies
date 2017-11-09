@@ -1,0 +1,5 @@
+./obj_files/mean.o: src_files/mean.c inc_files/mean.h
+./obj_files/stddev.o: src_files/stddev.c inc_files/stddev.h
+./obj_files/print_table.o: src_files/print_table.c inc_files/print_table.h
+./obj_files/mean_stddev.o: src_files/mean_stddev.c inc_files/mean.h \ 
+inc_files/stddev.h inc_files/print_table.h

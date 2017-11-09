@@ -28,6 +28,10 @@ island *find(island *, const char *);
 // and returns the new head. 
 island *release(island *, const char *);
 
+// release(h) removes all records (including any referenced items on leap, i.e. names)
+// from the linked list recursively
+void release_all(island *);
+
 void display(island *start){
 	if(start == NULL){
 		printf("Empty list.\n");
@@ -81,8 +85,8 @@ island *insert_head(island *h, island *n){
 
 // insert_after(w, n) inserts *n after *w in the linked list (assuming *w is somewhere in the list)
 void insert_after(island *w, island *n){
-	w->next = n;
 	n->next = w->next;
+	w->next = n;
 }
 
 // find(h, n) searches for the first record whose name is n in the linked list headed at h and returns 
@@ -135,6 +139,19 @@ island *release(island *h, const char *name){
 	}
 }
 
+// release(h) removes all records (including any referenced items on leap, i.e. names)
+// from the linked list recursively
+void release_all(island *h){
+  if(h){
+    if(h->name)
+      free(h->name);
+
+    struct island_type *n=h->next;
+    free(h);
+    release_all(n);
+  }
+}
+
 int main(){
 	island *start = NULL;
 	island *n;
@@ -146,6 +163,8 @@ int main(){
 		start = insert_end(start,n); 		
 	} 
 	display(start);
+
+  fseek(stdin,0,SEEK_END);
 
 	printf("\nWhat do you want to find? ");
 	fgets(name, sizeof(name), stdin);
@@ -170,5 +189,6 @@ int main(){
 	start =release(start, name);
 	display(start);
 
+  release_all(start);
 	return 0;
 }
