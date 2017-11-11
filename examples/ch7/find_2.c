@@ -33,6 +33,7 @@ void find(const char *criteria){
 
 int main(){
 	find("sports and dining");
+	find("sports and TV");
 	
 	return 0;
 }

@@ -53,9 +53,19 @@ island *create(const char *name){
 	}
 	
 	// The following is correct.
-	i->name = strdup(name);
+	// i->name = strdup(name);
 	// The following is wrong.
 	// i->name = name;
+  
+	// The following is wrong too because strcpy does not allocate space. It
+  // assumes the target has sufficient memory space already.
+	// strcpy(i->name, name);
+  // To fix it if you still want to use strcpy, you have to do the following
+	if((i->name= calloc(10, sizeof(char)))==NULL){
+		printf("Out of memory on heap.\n");
+		return NULL;
+	}
+	strcpy(i->name, name);
 
 	i->opens = "09:00";
 	i->closes = "17:00";
