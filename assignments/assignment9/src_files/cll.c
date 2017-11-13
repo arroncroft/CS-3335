@@ -11,18 +11,20 @@ typedef struct soldier_type
 
 soldier *create(const char *name)
 {
-    soldier *s;
-    if ((s = malloc(sizeof(soldier))) == NULL)
+    soldier *i;
+    if ((i = malloc(sizeof(soldier))) == NULL)
     {
         printf("Out of memory on heap.\n");
         return NULL;
     }
-    s->name = strdup(name);
-    s->next = NULL;
-    return s;
+    i->name = strdup(name);
+    strcpy(i->name, name);
+    i->next = NULL;
+
+    return i;
 }
 
-void *insert(void *cursor, void *name)
+soldier *insert(soldier *cursor, soldier *name)
 {
     if (cursor == NULL)
         return name;
@@ -36,17 +38,16 @@ void *insert(void *cursor, void *name)
     }
 }
 
-void *advance(void *cursor)
+soldier *advance(soldier *cursor)
 {
 }
 
-void print(void *cursor)
+soldier print(soldier *cursor)
 {
 }
 
-void *release(void *cursor)
+soldier *release(soldier *cursor)
 {
-    
 }
 
 void display(soldier *start)
@@ -57,10 +58,27 @@ void display(soldier *start)
     }
     else
     {
-        soldier *i = start;
-        for (; i != NULL; i = i->next)
+        soldier *s = start;
+        for (; s != NULL; s = s->next)
         {
-            printf("Name: %s\n", i->name);
+            printf("Name: %s\n", s->name);
         }
     }
+}
+
+int main()
+{
+    soldier *start = NULL;
+    soldier *s;
+    char name[80];
+    for (; fgets(name, sizeof(name), stdin) != NULL;)
+    {
+        name[strlen(name) - 1] = '\0';
+        if ((s = create(name)) == NULL)
+            return 1;
+        start = insert(start, s);
+    }
+    display(start);
+
+    return 0;
 }

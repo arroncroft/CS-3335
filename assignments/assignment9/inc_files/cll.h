@@ -6,17 +6,17 @@ soldier *create(const char *name);
 // For the Josephus program, it is a new soldier,
 // whose name comes in as the second argument. 
 // Returns the pointer pointing the new node as the new cursor.
-void *insert(void *cursor, void *name);
+soldier *insert(soldier *cursor, soldier *name);
 
 // Advances the cursor by one node and returns it.
-void *advance(void *cursor);
+soldier *advance(soldier *cursor);
 
 // Prints the node pointed by cursor.
 // For the Josephus program, the name of the soldier is printed. 
-void print(void *cursor);
+soldier print(soldier *cursor);
 
 // Removes the node after the cursor.
 // Returns the current cursor.
-void *release(void *cursor);
+soldier *release(soldier *cursor);
 
 void display(soldier *start);
