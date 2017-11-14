@@ -1,1 +1,2 @@
-./obj_files/cll.o: src_files/cll.c inc_files/cll.h
+./obj_files/cll.o: src_files/cll.c inc_files/cll.h inc_files/josephus.h
+./obj_files/josephus.o: src_files/josephus.c inc_files/cll.h

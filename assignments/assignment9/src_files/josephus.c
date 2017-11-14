@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "cll.h"
 
 typedef struct soldier_type
 {
@@ -22,59 +23,6 @@ soldier *create(const char *name)
 	s->next = NULL;
 
 	return s;
-}
-
-soldier *insert(soldier *cursor, soldier *name)
-{
-	if (cursor == NULL)
-	{
-		name->next = name;
-		return name;
-	}
-	else
-	{
-		soldier *s = cursor;
-		for (; s->next != cursor; s = s->next)
-			;
-		s->next = name;
-		name->next = cursor;
-		return cursor;
-	}
-}
-
-soldier *advance(soldier *cursor)
-{
-	soldier *s = cursor;
-	return s->next;
-}
-
-soldier *release(soldier *cursor)
-{
-	//if cursor is only item in list
-	if (cursor == cursor->next)
-	{
-		free(cursor->name);
-		free(cursor);
-		return NULL;
-	}
-	else //if more than one item in list
-	{
-		soldier *s = cursor->next;
-		while(s->next != cursor)
-		{
-			s = s->next;
-		}
-		s->next = cursor->next;
-		free(cursor->name);
-		free(cursor);
-		return s->next;
-	}
-}
-
-soldier print(soldier *cursor)
-{
-	soldier *s = cursor;
-	printf("Cursor is on: %s\n",cursor->name);
 }
 
 void display(soldier *cursor)
@@ -121,11 +69,11 @@ int main()
 		{
 			s = advance(s);
 		}
+		print(s);
 		s = release(s);
-		printf("%s is dead.", s->name);
 	}
+	print(s);
+	s = release(s);
 
-
-	
 	return 0;
 }
