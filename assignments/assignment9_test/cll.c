@@ -8,42 +8,6 @@ typedef struct soldier_type
 	struct soldier_type *next;
 } soldier;
 
-void display(soldier *);
-
-soldier *create(const char *);
-
-// insert_end(h, n) inserts *n at the end of the linked list headed at h and returns the new head
-soldier *insert(soldier *, soldier *);
-
-// Advances the cursor by one node and returns it.
-soldier *advance(soldier *cursor);
-
-// release(h, name) removes the first record whose name is name (if found) from the linked list headed at h
-// and returns the new head.
-soldier *release(soldier *, const char *);
-
-// release(h) removes all records (including any referenced items on leap, i.e. names)
-// from the linked list recursively
-void release_all(soldier *);
-
-soldier print(soldier *cursor);
-
-void display(soldier *start)
-{
-	if (start == NULL)
-	{
-		printf("Empty list.\n");
-	}
-	else
-	{
-		soldier *i = start;
-		for (; i != NULL; i = i->next)
-		{
-			printf("Name: %s\n", i->name);
-		}
-	}
-}
-
 soldier *create(const char *name)
 {
 	soldier *s;
@@ -60,88 +24,84 @@ soldier *create(const char *name)
 	return s;
 }
 
-// insert(cursor, name) inserts *name at the end of the linked list headed at cursor and returns the new head
 soldier *insert(soldier *cursor, soldier *name)
 {
 	if (cursor == NULL)
+	{
+		name->next = name;
 		return name;
+	}
 	else
 	{
 		soldier *s = cursor;
-		for (; s->next != NULL; s = s->next)
+		for (; s->next != cursor; s = s->next)
 			;
 		s->next = name;
+		name->next = cursor;
 		return cursor;
 	}
 }
 
-// Advances the cursor by one node and returns it.
 soldier *advance(soldier *cursor)
 {
-	cursor->next = cursor;
+	soldier *s = cursor;
+	return s->next;
 }
 
-// release(h, name) removes the first record whose name is name (if found) from the linked list headed at h
-// and returns the new head.
-soldier *release(soldier *cursor, const char *name)
+soldier *release(soldier *cursor)
 {
-	if (cursor == NULL)
-		return NULL;
-	else if (strcmp(cursor->name, name) == 0)
+	//if cursor is only item in list
+	if (cursor == cursor->next)
 	{
-		soldier *t = cursor;
-		t = t->next;
 		free(cursor->name);
 		free(cursor);
-		return t;
+		return NULL;
 	}
-	else
+	else //if more than one item in list
 	{
-		soldier *pre = cursor;
-		soldier *n = pre->next;
-		while (n != NULL)
+		soldier *s = cursor->next;
+		while(s->next != cursor)
 		{
-			if (strcmp(n->name, name) == 0)
-			{ // found it
-				pre->next = n->next;
-				free(n->name);
-				free(n);
-				return cursor;
-			}
-			else
-			{
-				pre = n;
-				n = n->next;
-			}
+			s = s->next;
 		}
-		return cursor; // not found
+		s->next = cursor->next;
+		free(cursor->name);
+		free(cursor);
+		return s->next;
 	}
 }
 
-// release(h) removes all records (including any referenced items on leap, i.e. names)
-// from the linked list recursively
-/*void release_all(soldier *h)
+soldier print(soldier *cursor)
 {
-	if (h)
-	{
-		if (h->name)
-			free(h->name);
+	soldier *s = cursor;
+	printf("Cursor is on: %s\n",cursor->name);
+}
 
-		struct soldier_type *n = h->next;
-		free(h);
-		release_all(n);
-	}
-}*/
-
-// Prints the node pointed by cursor.
-// For the Josephus program, the name of the soldier is printed. 
-soldier print(soldier *cursor);
+void display(soldier *cursor)
+{
+    soldier *temp = cursor;
+    if (cursor != NULL)
+    {
+    	printf("\t\t");
+        do
+        {
+            printf("%s\t\t", temp->name);
+            temp = temp->next;
+        }
+        while (temp != cursor);
+    }
+    printf("\n\n");
+}
 
 int main()
 {
 	soldier *start = NULL;
 	soldier *s;
 	char name[80];
+	int order;
+	int i;
+	
+	printf("Enter the names of soldiers (one per line, Ctrl-D to finish):\n");
 	for (; fgets(name, sizeof(name), stdin) != NULL;)
 	{
 		name[strlen(name) - 1] = '\0';
@@ -149,6 +109,23 @@ int main()
 			return 1;
 		start = insert(start, s);
 	}
-	display(start);
+	printf("The soldiers are:");
+	display(s);
+	printf("Enter the elimination order: ");
+	scanf("%d", &order);
+	printf("\n");
+	
+	while(s != s->next)
+	{
+		for(i = 0; i < order; i++)
+		{
+			s = advance(s);
+		}
+		s = release(s);
+		printf("%s is dead.", s->name);
+	}
+
+
+	
 	return 0;
 }
