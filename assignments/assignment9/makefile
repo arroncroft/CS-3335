@@ -4,16 +4,16 @@ OBJ_DIR = ./obj_files
 BIN_DIR = ./bin_files
 
 CC = gcc
-_OBJS = cll.o
+_OBJS = cll.o josephus.o
 OBJS = $(patsubst %, $(OBJ_DIR)/%, $(_OBJS))
 _SRCS = $(patsubst %.o, %.c, $(_OBJS))
 SRCS = $(patsubst %, $(SRC_DIR)/%, $(_SRCS))
 CFLAGS = -g -I$(INC_DIR)
 LDFLAGS = -lm 
 
-all: $(BIN_DIR)/cll
+all: $(BIN_DIR)/josephus
 
-$(BIN_DIR)/cll: $(OBJS) 
+$(BIN_DIR)/josephus: $(OBJS) 
 	$(CC) $(LDFLAGS) -o $@ $^
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
