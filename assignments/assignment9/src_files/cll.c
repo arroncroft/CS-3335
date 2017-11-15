@@ -10,22 +10,6 @@ typedef struct soldier_type
 	struct soldier_type *next;
 } soldier;
 
-soldier *create(const char *name)
-{
-	soldier *s;
-	if ((s = malloc(sizeof(soldier))) == NULL)
-	{
-		printf("Out of memory on heap.\n");
-		return NULL;
-	}
-	//The following is correct.
-	s->name = strdup(name);
-	strcpy(s->name, name);
-	s->next = NULL;
-
-	return s;
-}
-
 soldier *insert(soldier *cursor, soldier *name)
 {
 	if (cursor == NULL)

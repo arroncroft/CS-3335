@@ -1,7 +1,5 @@
 typedef struct soldier_type soldier;
 
-soldier *create(const char *);
-
 // Adds a new node after the cursor. 
 // For the Josephus program, it is a new soldier,
 // whose name comes in as the second argument. 
