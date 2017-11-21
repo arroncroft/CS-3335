@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "sortedcards.h": "c",
+        "stdlib.h": "c",
+        "sortedhand.h": "c",
+        "populatedeck.h": "c"
+    }
+}

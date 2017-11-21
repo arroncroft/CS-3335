@@ -1,0 +1,5 @@
+./obj_files/sortedHand.o: src_files/sortedHand.c inc_files/sortedHand.h \
+ inc_files/populateDeck.h inc_files/compare.h
+./obj_files/populateDeck.o: src_files/populateDeck.c inc_files/sortedHand.h \
+ inc_files/populateDeck.h
+./obj_files/compare.o: src_files/compare.c inc_files/sortedHand.h inc_files/compare.h
